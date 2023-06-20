@@ -1,0 +1,65 @@
+/*
+Dear code-reviewer,
+No this css is not invalid, I am using Nested CSS:
+https://www.w3.org/TR/css-nesting-1/
+https://caniuse.com/css-nesting 
+https://developer.chrome.com/articles/css-nesting/
+I believe this will replace SCSS in the long run and while experimenting in this new project I gave it a go.
+To get VSCode support please install this plugin:
+https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-postcss
+as mentioned in this thread:
+https://github.com/microsoft/vscode/issues/147824
+*/
+
+.fedex-page {
+  height: 100vh;
+  .fedex-page__inspiration-image {
+    display: fixed;
+    height: 100vh;
+    background: lightblue url('https://api.time.com/wp-content/uploads/2021/04/fedex-time100-companies.jpg') repeat fixed right;
+    padding: 0;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      margin-top: 0;
+      height: 100vh;
+      right: 0;
+      border-width: 100vh 0 0 100px;
+      border-style: solid;
+      border-color: white transparent transparent;
+    }
+  }
+  .fedex-page__main {
+    background: white;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .fedex-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 1;
+      height: 10vh;
+      margin: 4rem;
+      & h1 {
+        font-size: 50px;
+        font-weight: 800;
+        font-family: 'Kablammo', cursive;
+      }
+    }   
+  
+    .fedex-content {
+    }
+      
+    .fedex-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        height: 10vh;
+    }
+  }
+}

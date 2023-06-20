@@ -10,5 +10,5 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'fedex-assignment';
+  title = 'FedEx';
 }

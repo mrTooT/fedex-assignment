@@ -1,2 +1,14 @@
-<fedex-assignment-nx-welcome></fedex-assignment-nx-welcome>
-<router-outlet></router-outlet>
+<div class="columns fedex-page">
+  <div class="column is-one-third fedex-page__inspiration-image"></div>
+  <div class="column is-two-thirds fedex-page__main">
+    <header class="fedex-header">
+      <h1>{{ title }}</h1>
+    </header>
+    <main class="fedex_content">
+        <router-outlet></router-outlet>
+    </main>
+    <footer class="fedex-footer">
+      <div class="fedex-footer__text">Created with ❤️ by Rik Toetenel</div>
+    </footer>
+  </div>
+</div>
