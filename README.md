@@ -24,15 +24,22 @@ npm start
 You can test the Log-in Form Acceptance criteria with [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/angular/overview), by running:
 
 ```bash
-npm test
+npm run test
 ```
 
 # Unit tests
-`nx unit # runs unit test`
+
+You can run the unit test (but I have not put any effort in writing unit tests) with:
+```bash
+npm run unit
+```
 
 # Linting
 
-`nx lint # runs linting with ESLint`
+You can lint with:
+```bash
+npm run lint
+```
 
 
 ## Usage
