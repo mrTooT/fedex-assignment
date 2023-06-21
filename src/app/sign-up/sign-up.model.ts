@@ -3,3 +3,9 @@ export enum PasswordError {
   Characters = "CHARACTERS",
   NameUsage = "NAME"
 }
+
+export type SignUpDetails =  {
+  firstName: string;
+  lastName: string;
+  email: string;
+}

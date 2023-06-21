@@ -48,6 +48,28 @@
     </div>
   </div>
   <div class="sign-up-form__input">
+    <label class="label">E-mailadres</label>
+    <input 
+      #emailModel="ngModel"
+      [class.is-danger]="emailModel.invalid && (emailModel.dirty || emailModel.touched)"
+      [ngModel]="email()"
+      (input)="onEmailChange($event)"
+      class="input is-large"
+      type="email"
+      required
+      placeholder="E-mailadres"
+    >
+    <div
+      *ngIf="lastNameModel.invalid && (lastNameModel.dirty || lastNameModel.touched)"
+      class="alert"
+      data-cy="booking-error"
+    >
+      <p class="help is-danger" *ngIf="lastNameModel.errors?.['required']">
+        Last name is required.
+      </p>
+    </div>
+  </div>
+  <div class="sign-up-form__input">
     <label class="label">Password (should be a minimum of eight characters, contain an uppercase and lowercase character and should not contain firstname or lastname)</label>
     <input
       #passwordModel="ngModel"
@@ -85,6 +107,8 @@
   </div>
   <div class="control">
     <button 
+      (click)="onSubmit()"
+      [class.is-loading]="isLoading"
       [disabled]="passwordModel.invalid || firstNameModel.invalid || lastNameModel.invalid || !passwordIsStrong"
       class="button is-primary">Submit
   </button>

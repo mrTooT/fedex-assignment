@@ -50,8 +50,8 @@ This project uses:
 ## Improvements
 
 Things that I wanted to implement but did not have time for
-- Frontend mocking
-- Get more data from json file
+- Unit tests
+- Improvement of confirmation page
 - Semantics of flight-details page
 - Enrichment of data of flight-details page
 - Share Models between client and server

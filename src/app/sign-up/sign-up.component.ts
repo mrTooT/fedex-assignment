@@ -1,12 +1,16 @@
 import { Component, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PasswordError } from './sign-up.model';
+import { PasswordError, SignUpDetails } from './sign-up.model';
+import { SignUpService } from '../services/sign-up.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'fedex-assignment-sign-up',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  providers: [SignUpService],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
@@ -20,7 +24,9 @@ export class SignUpComponent {
   public passwordIsStrong = true;
   public passwordError: PasswordError | null = null;
 
-  constructor() {
+  constructor(
+    private signUpService: SignUpService, 
+    private router: Router) {
     effect(() => {
       console.log(`Firstname: ${this.firstName()}`);
       console.log(`Lastname: ${this.lastName()}`);
@@ -31,19 +37,27 @@ export class SignUpComponent {
     });
   }
   
-  onFirstNameChange(event: any) {
-    this.firstName.set(event?.target?.value)
+  onFirstNameChange(event: Event) {
+    const target = event?.target as HTMLInputElement;
+    this.firstName.set(target?.value);
   }
 
-  onLastNameChange(event: any) {
-    this.lastName.set(event?.target?.value)
+  onLastNameChange(event: Event) {
+    const target = event?.target as HTMLInputElement;
+    this.lastName.set(target?.value);
   }
 
-  onPasswordChange(event: any) {
-    const password = event?.target?.value;
+  onPasswordChange(event: Event) {
+    const target = event?.target as HTMLInputElement;
+    const password = target?.value;
     this.passwordIsStrong = this.checkpasswordStrengh(password);
     this.password = password;
     console.log('passwordIsStrong: ', this.passwordIsStrong);
+  }
+
+  onEmailChange(event: Event){
+    const target = event?.target as HTMLInputElement;
+    this.email.set(target?.value)
   }
 
   checkpasswordStrengh(password: string) {
@@ -78,19 +92,23 @@ export class SignUpComponent {
 
   onSubmit(): void {
     this.isLoading = true;
+    const signUpDetails: SignUpDetails = {
+      firstName: this.firstName(),
+      lastName: this.lastName(),
+      email: this.email()
+    }
 
-    // this.flightDetailsService.getFlightDetails().subscribe(data => {
-    //   setTimeout(() => {
-    //     const bookingCode = data.data?.flightDetails?.bookingCode;
-    //     if (bookingCode === this.bookingCode.value) {
-    //       this.invalidBookingNumber = false;
-    //       this.navigateToFlightDetails();
-    //     } else {
-    //       this.invalidBookingNumber = true;
-    //       this.isLoading = false;
-    //     }
-    //   }, TIMEOUT_DURATION);
-    // });
+    this.signUpService.postSignUpDetails(signUpDetails).subscribe((data: SignUpDetails) => {
+      setTimeout(() => {
+        console.log(data);
+        this.router.navigate(['confirmation']);
+        this.isLoading = false;
+        this
+      }, 2000);
+    }, err => {
+      this.isLoading = false;
+      console.log('this is the error: ', err)
+    });
   }
 
 }
