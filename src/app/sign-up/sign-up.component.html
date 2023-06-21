@@ -54,20 +54,24 @@
     <input 
       #emailModel="ngModel"
       [class.is-danger]="emailModel.invalid && (emailModel.dirty || emailModel.touched)"
-      [ngModel]="email()"
+      [ngModel]="email"
       (input)="onEmailChange($event)"
       class="input is-large"
       type="email"
       required
+      email
       placeholder="E-mailadres"
       data-cy="email"
     >
     <div
-      *ngIf="lastNameModel.invalid && (lastNameModel.dirty || lastNameModel.touched)"
+      *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)"
       class="alert"
     >
-      <p class="help is-danger" *ngIf="lastNameModel.errors?.['required']">
-        Last name is required.
+      <p class="help is-danger" *ngIf="emailModel.errors?.['required']">
+        E-mailadress is required.
+      </p>
+      <p class="help is-danger" *ngIf="emailModel.errors?.['email']">
+        E-mailadress is invalid.
       </p>
     </div>
   </div>
