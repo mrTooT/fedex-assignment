@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { passwordStrenghtValidator } from './form-validators/password.validator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordError } from './sign-up.model';
 
 @Component({
   selector: 'fedex-assignment-sign-up',
@@ -13,40 +13,68 @@ import { passwordStrenghtValidator } from './form-validators/password.validator'
 export class SignUpComponent {
   public isLoading = false;
   public invalidBookingNumber = false;
-  public fedExForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl('', { 
-      validators: [
-        Validators.required, 
-        Validators.email
-      ]
-    }),
-    password: new FormControl('', {
-      validators: [
-        Validators.required, 
-        Validators.minLength(8),
-        
-      ]
-    })
-  }, passwordStrenghtValidator());
+  public firstName = signal<string>('');
+  public lastName = signal<string>('');
+  public password = '';
+  public email = signal<string>('');
+  public passwordIsStrong = true;
+  public passwordError: PasswordError | null = null;
+
+  constructor() {
+    effect(() => {
+      console.log(`Firstname: ${this.firstName()}`);
+      console.log(`Lastname: ${this.lastName()}`);
+      console.log(`password: ${this.password}`);
+      if (this.firstName() !== '' || this.lastName() !== '' ) {
+        this.passwordIsStrong = this.checkpasswordStrengh(this.password);
+      }
+    });
+  }
+  
+  onFirstNameChange(event: any) {
+    this.firstName.set(event?.target?.value)
+  }
+
+  onLastNameChange(event: any) {
+    this.lastName.set(event?.target?.value)
+  }
 
   onPasswordChange(event: any) {
-    // console.log(event);
-    console.log('formControl: ', this.fedExForm.controls['password'])
+    const password = event?.target?.value;
+    this.passwordIsStrong = this.checkpasswordStrengh(password);
+    this.password = password;
+    console.log('passwordIsStrong: ', this.passwordIsStrong);
   }
 
-  onFirstnameChange(event: any) {
-    console.log('event: ', event);
-    console.log('FirstName: ', this.fedExForm.get('firstName')?.value)
-  }
-
-  canSubmit(): boolean {
-    if (this.fedExForm.invalid) {
+  checkpasswordStrengh(password: string) {
+    if (!password || !this.firstName() || !this.lastName()) {
+      this.passwordError = PasswordError.Empty;
       return false;
     }
+
+    const hasUpperCase = /[A-Z]+/.test(password);
+
+    const hasLowerCase = /[a-z]+/.test(password);
+
+    const hasFirstName = password.includes(this.firstName());
+
+    const hasLastName = password.includes(this.lastName());
+
+    console.log('Still here');
+
+    if (!hasUpperCase || !hasLowerCase) {
+      this.passwordError = PasswordError.Characters;
+      return false;
+    }  
+    
+    if (hasFirstName || hasLastName) {
+      this.passwordError = PasswordError.NameUsage;
+      console.log('Still here');
+      return false;
+    }
+
     return true;
-  }
+}
 
   onSubmit(): void {
     this.isLoading = true;
