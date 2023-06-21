@@ -55,6 +55,7 @@ This project uses:
 ## Improvements
 
 Things that I wanted to implement but did not have time for
+- Improve that the password validation only kicks in on blur of the input
 - Unit tests
 - Improvement of confirmation page
 - Also cypress tests on validation messages instead of only submit button
