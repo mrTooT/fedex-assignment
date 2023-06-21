@@ -115,7 +115,7 @@
     <button 
       (click)="onSubmit()"
       [class.is-loading]="isLoading"
-      [disabled]="passwordModel.invalid || firstNameModel.invalid || lastNameModel.invalid || !passwordIsStrong"
+      [disabled]="passwordModel.invalid || firstNameModel.invalid || lastNameModel.invalid || emailModel.invalid || !passwordIsStrong"
       class="button is-primary"
       data-cy="button">Submit
   </button>
