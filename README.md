@@ -3,7 +3,9 @@
 
 This is my FedEX assignment, I really enjoyed the challenge.
 Especially the password validation with First + Last name, which took quite some effort.
-Lastly it was fun to tryout Angular's newest features like Signals and Standalone components in combination with NX 
+Lastly it was fun to tryout Angular's newest features like Signals and Standalone components in combination with NX.
+
+Because I wanted to tryout [Nested CSS](https://www.w3.org/TR/css-nesting-1/) please use Chrome to visit the app.
 
 ## Installation
 
@@ -46,6 +48,7 @@ npm run lint
 
 This project uses:
 - [NX](https://nx.dev/tutorials/angular-standalone-tutorial)
+- [Nested CSS](https://www.w3.org/TR/css-nesting-1/)
 - [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/angular/overview)
 - Angular 16 with [Standalone components](https://angular.io/guide/standalone-components) and [Signals](https://angular.io/guide/signals)
 - [Bulma](https://bulma.io/documentation/) CSS Library
@@ -54,7 +57,8 @@ This project uses:
 
 ## Improvements
 
-Things that I wanted to implement but did not have time for
+Things that I wanted to implement but did not have time for:
+- Improve FedEx image scrolling on smalls screens
 - Improve that the password validation only kicks in on blur of the input
 - Unit tests
 - Improvement of confirmation page
