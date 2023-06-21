@@ -2,74 +2,76 @@
   <div class="sign-up-form__introduction-text">
     <p>Please sign-up using this beautifull form. All fields are required</p>
   </div>
-  <div class="sign-up-form__input">
-    <label class="label">First name</label>
-    <input 
-      [class.is-danger]="firstName.invalid && (firstName.dirty || firstName.touched)"
-      [formControl="firstName"
-      (input)="onFirstnameChange($event)"
-      class="input is-large" 
-      type="text"
-      required
-      placeholder="First name"
-    >
-    <div
-      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-      class="alert"
-      data-cy="booking-error"
-    >
-      <p class="help is-danger" *ngIf="firstName.errors?.['required']">
-        First name is required.
-      </p>
+  <form [formGroup]="fedExForm">
+    <div class="sign-up-form__input">
+      <label class="label">First name</label>
+      <input 
+        [class.is-danger]="fedExForm.controls['firstName'].invalid && (fedExForm.controls['firstName'].dirty || fedExForm.controls['firstName'].touched)"
+        formControlName="firstName"
+        (input)="onFirstnameChange($event)"
+        class="input is-large" 
+        type="text"
+        required
+        placeholder="First name"
+      >
+      <div
+        *ngIf="fedExForm.controls['firstName'].invalid && (fedExForm.controls['firstName'].dirty || fedExForm.controls['firstName'].touched)"
+        class="alert"
+        data-cy="booking-error"
+      >
+        <p class="help is-danger" *ngIf="fedExForm.controls['firstName'].errors?.['required']">
+          First name is required.
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="sign-up-form__input">
-    <label class="label">Last name</label>
-    <input 
-      [class.is-danger]="lastName.invalid && (lastName.dirty || lastName.touched)"
-      [formControl]="lastName"
-      class="input is-large"
-      type="text"
-      required
-      placeholder="Last name"
-    >
-    <div
-      *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
-      class="alert"
-      data-cy="booking-error"
-    >
-      <p class="help is-danger" *ngIf="lastName.errors?.['required']">
-        Last name is required.
-      </p>
+    <div class="sign-up-form__input">
+      <label class="label">Last name</label>
+      <input 
+        [class.is-danger]="fedExForm.controls['lastName'].invalid && (fedExForm.controls['lastName'].dirty || fedExForm.controls['lastName'].touched)"
+        formControlName="lastName"
+        class="input is-large"
+        type="text"
+        required
+        placeholder="Last name"
+      >
+      <div
+        *ngIf="fedExForm.controls['lastName'].invalid && (fedExForm.controls['lastName'].dirty || fedExForm.controls['lastName'].touched)"
+        class="alert"
+        data-cy="booking-error"
+      >
+        <p class="help is-danger" *ngIf="fedExForm.controls['lastName'].errors?.['required']">
+          Last name is required.
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="sign-up-form__input">
-    <label class="label">Password (should be a minimum of eight characters, contain an uppercase and lowercase character and should not contain firstname or lastname)</label>
-    <input
-      [class.is-danger]="password.invalid && (password.dirty || password.touched)"
-      [formControl]="password"
-      (input)="onPasswordChange($event)"
-      type="password"
-      autocomplete="off"
-      class="input is-large"
-      required
-      placeholder="Password"
-      data-cy="booking"
-    />
-    <div
-      *ngIf="password.invalid && (password.dirty || password.touched)"
-      class="alert"
-      data-cy="password-error"
-    >
-      <p class="help is-danger" *ngIf="password.errors?.['required']">
-        Password is required.
-      </p>
-      <p class="help is-danger" *ngIf="password.errors?.['minlength']">
-        Password should be a minimum of eight characters,
-      </p>
-      <p class="help is-danger" *ngIf="password.errors?.['password']">
-        Password does not meet requirements
-      </p>
+    <div class="sign-up-form__input">
+      <label class="label">Password (should be a minimum of eight characters, contain an uppercase and lowercase character and should not contain firstname or lastname)</label>
+      <input
+        [class.is-danger]="fedExForm.controls['password'].invalid && (fedExForm.controls['password'].dirty || fedExForm.controls['password'].touched)"
+        formControlName="password"
+        (input)="onPasswordChange($event)"
+        type="password"
+        autocomplete="off"
+        class="input is-large"
+        required
+        placeholder="Password"
+        data-cy="booking"
+      />
+      <div
+        *ngIf="fedExForm.controls['password'].invalid && (fedExForm.controls['password'].dirty || fedExForm.controls['password'].touched)"
+        class="alert"
+        data-cy="password-error"
+      >
+        <p class="help is-danger" *ngIf="fedExForm.controls['password'].errors?.['required']">
+          Password is required.
+        </p>
+        <p class="help is-danger" *ngIf="fedExForm.controls['password'].errors?.['minlength']">
+          Password should be a minimum of eight characters,
+        </p>
+        <p class="help is-danger" *ngIf="fedExForm.controls['password'].errors?.['passwordStrength']">
+          Password does not meet requirements
+        </p>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

@@ -26,14 +26,14 @@ export class SignUpComponent {
       validators: [
         Validators.required, 
         Validators.minLength(8),
-        passwordStrenghtValidator()
+        
       ]
     })
-  });
+  }, passwordStrenghtValidator());
 
   onPasswordChange(event: any) {
     // console.log(event);
-    // console.log('formControl: ', this.password)
+    console.log('formControl: ', this.fedExForm.controls['password'])
   }
 
   onFirstnameChange(event: any) {
@@ -42,7 +42,7 @@ export class SignUpComponent {
   }
 
   canSubmit(): boolean {
-    if (this.fedExForm.get('password')?.invalid || this.fedExForm.get('email')?.invalid) {
+    if (this.fedExForm.invalid) {
       return false;
     }
     return true;
