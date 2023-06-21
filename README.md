@@ -1,11 +1,9 @@
-# FedexAssignment
-
-https://nx.dev/tutorials/angular-standalone-tutorial
 
 # FedEx Assignment
 
-This is my FedEX assignment, I had a lot of fun creating this repository.
-
+This is my FedEX assignment, I really enjoyed the challenge.
+Especially the password validation with First + Last name, which took quite some effort.
+Lastly it was fun to tryout Angular's newest features like Signals and Standalone components in combination with NX 
 
 ## Installation
 
@@ -29,8 +27,8 @@ You can test the Log-in Form Acceptance criteria with [Cypress Component Testing
 npm test
 ```
 
-# Cypress E2E Testing
-`nx e2e e2e # runs e2e tests with Cypress`
+# Unit tests
+`nx unit # runs unit test`
 
 # Linting
 
@@ -42,7 +40,7 @@ npm test
 This project uses:
 - [NX](https://nx.dev/tutorials/angular-standalone-tutorial)
 - [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/angular/overview)
-- Angular 16 with [Standalone components](https://angular.io/guide/standalone-components)
+- Angular 16 with [Standalone components](https://angular.io/guide/standalone-components) and [Signals](https://angular.io/guide/signals)
 - [Bulma](https://bulma.io/documentation/) CSS Library
 - [Prettier](https://prettier.io/docs/en/install.html)
 - [Linting with eslint](https://eslint.org/)
@@ -52,10 +50,8 @@ This project uses:
 Things that I wanted to implement but did not have time for
 - Unit tests
 - Improvement of confirmation page
-- Semantics of flight-details page
-- Enrichment of data of flight-details page
-- Share Models between client and server
-- Create multiple form validators for 1 and special characters
+- Also cypress tests on validation messages instead of only submit button
+- More cypress tests for other form fields
 
 
 

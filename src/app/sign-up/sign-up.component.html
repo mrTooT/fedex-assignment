@@ -14,6 +14,7 @@
       type="text"
       required
       placeholder="First name"
+      data-cy="first-name"
     >
     <div
       *ngIf="firstNameModel.invalid && (firstNameModel.dirty || firstNameModel.touched)"
@@ -36,6 +37,7 @@
       type="text"
       required
       placeholder="Last name"
+      data-cy="last-name"
     >
     <div
       *ngIf="lastNameModel.invalid && (lastNameModel.dirty || lastNameModel.touched)"
@@ -58,11 +60,11 @@
       type="email"
       required
       placeholder="E-mailadres"
+      data-cy="email"
     >
     <div
       *ngIf="lastNameModel.invalid && (lastNameModel.dirty || lastNameModel.touched)"
       class="alert"
-      data-cy="booking-error"
     >
       <p class="help is-danger" *ngIf="lastNameModel.errors?.['required']">
         Last name is required.
@@ -81,7 +83,7 @@
       class="input is-large"
       required
       placeholder="Password"
-      data-cy="booking"
+      data-cy="password"
     />
     <div
       *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched) || !passwordIsStrong"
@@ -110,7 +112,8 @@
       (click)="onSubmit()"
       [class.is-loading]="isLoading"
       [disabled]="passwordModel.invalid || firstNameModel.invalid || lastNameModel.invalid || !passwordIsStrong"
-      class="button is-primary">Submit
+      class="button is-primary"
+      data-cy="button">Submit
   </button>
   </div>
 </div>
