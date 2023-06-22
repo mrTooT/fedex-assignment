@@ -36,24 +36,24 @@ export class SignUpComponent {
     });
   }
   
-  onFirstNameChange(event: Event) {
+  onFirstNameChange(event: Event): void {
     const target = event?.target as HTMLInputElement;
     this.firstName.set(target?.value);
   }
 
-  onLastNameChange(event: Event) {
+  onLastNameChange(event: Event): void {
     const target = event?.target as HTMLInputElement;
     this.lastName.set(target?.value);
   }
 
-  onPasswordChange(event: Event) {
+  onPasswordChange(event: Event): void {
     const target = event?.target as HTMLInputElement;
     const password = target?.value;
     this.passwordIsStrong = this.checkpasswordStrengh(password);
     this.password = password;
   }
 
-  onEmailChange(event: Event){
+  onEmailChange(event: Event): void {
     const target = event?.target as HTMLInputElement;
     this.email = target?.value;
   }
@@ -72,7 +72,7 @@ export class SignUpComponent {
     });
   }
 
-  private checkpasswordStrengh(password: string) {
+  private checkpasswordStrengh(password: string): boolean {
     if (!password || !this.firstName() || !this.lastName()) {
       this.passwordError = PasswordError.Empty;
       return false;
@@ -96,14 +96,13 @@ export class SignUpComponent {
     return true;
   }
 
-
-  private handleSignUpResponse(data: SignUpDetails) {
+  private handleSignUpResponse(data: SignUpDetails): void {
     this.isLoading = false;
     console.log('this is the data from the server: ', data)
     this.router.navigate(['confirmation']);
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): void {
     this.isLoading = false;
     console.error('this is the error: ', error)
   }
